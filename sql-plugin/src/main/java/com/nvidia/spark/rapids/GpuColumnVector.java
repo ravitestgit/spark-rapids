@@ -409,11 +409,11 @@ public class GpuColumnVector extends GpuColumnVectorBase {
   }
 
   public static final long getTotalDeviceMemoryUsed(GpuColumnVector[] cv) {
-    long sum = 0;
+    long sum1 = 0;
     for (int i = 0; i < cv.length; i++){
-      sum += cv[i].getBase().getDeviceMemorySize();
+      sum1 += cv[i].getBase().getDeviceMemorySize();
     }
-    return sum;
+    return sum1;
   }
 
   public static final long getTotalDeviceMemoryUsed(Table tb) {
