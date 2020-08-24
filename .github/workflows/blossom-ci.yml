@@ -1,0 +1,26 @@
+# This is a basic workflow to help you get started with Actions
+
+name: blossom-ci
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  issue_comment:
+    types: [created]
+    
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:     
+  # This workflow contains a single job called "build"- if: github.event_name == 'release' && github.event.action == 'created':
+  build:
+    if: github.event.comment.body == '/blossom-ci'
+    # The type of runner that the job will run on
+    runs-on: [self-hosted, linux, blossom]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Runs a single command using the runners shell
+    - name: Start blossom ci
+      run: blossom-ci
+      env: 
+        CI_SERVER: ${{ secrets.CI_SERVER }}
+        REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
