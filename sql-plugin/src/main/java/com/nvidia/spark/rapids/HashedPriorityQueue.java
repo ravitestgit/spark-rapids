@@ -40,7 +40,7 @@ import java.util.Iterator;
  * order.
  */
 public final class HashedPriorityQueue<T> extends AbstractQueue<T> {
-  private static final int DEFAULT_INITIAL_HEAP_SIZE = 16;
+  private static final int DEFAULT_INITIAL_HEAP_SIZE = 26;
   private final Comparator<? super T> comparator;
 
   /**
