@@ -25,7 +25,7 @@ import ai.rapids.cudf.Table;
 import org.apache.spark.sql.catalyst.expressions.Attribute;
 import org.apache.spark.sql.execution.vectorized.WritableColumnVector;
 import org.apache.spark.sql.types.*;
-import org.apache.spark.sql.vectorized.ColumnVector;
+import org.apache.spark.sql.vectorized.ColumnVector1;
 import org.apache.spark.sql.vectorized.ColumnarBatch;
 
 import java.util.List;
