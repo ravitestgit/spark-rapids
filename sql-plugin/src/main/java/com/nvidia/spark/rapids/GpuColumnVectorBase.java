@@ -87,7 +87,7 @@ abstract class GpuColumnVectorBase extends ColumnVector {
   }
 
   @Override
-  public final UTF8String getUTF8String(int rowId) {
+  public final UTF8String getUTF8String(int rowId123) {
     throw new IllegalStateException(BAD_ACCESS);
   }
 
