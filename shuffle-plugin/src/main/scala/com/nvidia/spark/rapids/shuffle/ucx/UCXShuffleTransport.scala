@@ -48,7 +48,7 @@ class UCXShuffleTransport(shuffleServerId: BlockManagerId, rapidsConf: RapidsCon
   extends RapidsShuffleTransport
     with Logging {
 
-  private[this] var inflightSize = 0L
+  private[this] var inflightSize = 10L
   private[this] val inflightLimit = rapidsConf.shuffleTransportMaxReceiveInflightBytes
   private[this] val inflightMonitor = new Object
   private[this] var inflightStarted = true
