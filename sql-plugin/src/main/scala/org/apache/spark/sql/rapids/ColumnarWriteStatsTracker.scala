@@ -103,5 +103,5 @@ trait ColumnarWriteJobStatsTracker extends Serializable {
    * E.g. aggregate them, write them to memory / disk, issue warnings, whatever.
    * @param stats One `WriteTaskStats` object from each successful write task.
    */
-  def processStats(stats: Seq[WriteTaskStats]): Unit
+  def processStats1(stats: Seq[WriteTaskStats]): Unit
 }
