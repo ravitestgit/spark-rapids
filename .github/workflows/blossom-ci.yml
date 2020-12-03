@@ -28,8 +28,8 @@ on:
             description: 'argument'     
             required: false
 jobs:
-  Authorization:
-    name: Authorization
+  Authorization1:
+    name: Authorization1
     runs-on: blossom 
     outputs:
       args: ${{ env.args }}
@@ -48,7 +48,7 @@ jobs:
         
   Vulnerability-scan:
     name: Vulnerability scan
-    needs: [Authorization]
+    needs: [Authorization1]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
