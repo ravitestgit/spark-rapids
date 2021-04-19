@@ -11,7 +11,16 @@ jobs:
     if: |
          contains( 'ravitestgit,', format('{0},', github.actor)) && 
          github.event.comment.body == '/blossom-ci1' 
-    steps:      
+    steps:
+      - name: Get pull request data
+        id: pull_request_data
+        uses: octokit/request-action@v2.x
+        with:
+          route: GET /repos/${{ github.repository }}/pulls/{issue_id}
+          issue_id: ${{ github.event.issue.number }}
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          
       - name: Checkout code
         uses: actions/checkout@v2
         with:
