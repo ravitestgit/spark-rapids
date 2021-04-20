@@ -40,9 +40,8 @@ jobs:
         run: echo "::add-mask::${{ secrets.BLACKDUCK_URL }}"
         
       - name: Run synopsys detect
+        id: scan_result
         uses: blackducksoftware/github-action@2.0.1
-        env:
-          PROJECTS: ${{ env.projects }}
         with:
           args: >
             --blackduck.url="https://${{ secrets.BLACKDUCK_URL }}"
@@ -50,6 +49,7 @@ jobs:
             --detect.maven.build.command="-pl='$PROJECTS -am'"
             --detect.maven.included.scopes=compile
             --detect.force.success=false
+            --detect.tools.excluded=SIGNATURE_SCAN
             --detect.parallel.processors=0
             --detect.project.name="${{ github.repository }}"
             --detect.project.version.name="${{ github.run_id }}"
