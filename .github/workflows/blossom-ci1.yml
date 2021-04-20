@@ -48,5 +48,6 @@ jobs:
             --blackduck.api.token="${{ secrets.BLACKDUCK_API_TOKEN }}"
             --detect.force.success=false
             --detect.parallel.processors=0
+            --detect.maven.build.command="-rf :rapids-4-spark-sql_2.12"
             --detect.project.name="${{ github.repository }}"
             --detect.project.version.name="${{ github.run_id }}"
