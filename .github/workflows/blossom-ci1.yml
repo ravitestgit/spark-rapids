@@ -48,9 +48,7 @@ jobs:
           args: >
             --blackduck.url="https://${{ secrets.BLACKDUCK_URL }}"
             --blackduck.api.token="${{ secrets.BLACKDUCK_API_TOKEN }}"
-            --detect.maven.build.command="-pl='$PROJECTS -am'"
             --detect.force.success=false
             --detect.parallel.processors=0
-            --detect.tools=DETECTOR
             --detect.project.name="${{ github.repository }}"
             --detect.project.version.name="${{ github.run_id }}"
