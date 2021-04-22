@@ -50,4 +50,4 @@ jobs:
             --detect.maven.build.command="-pl='$PROJECTS -am'"
             --detect.parallel.processors=0
             --detect.project.name="${{ github.repository }}"
-            --detect.project.version.name="${{ github.run_id }}"
+            --detect.project.version.name="test"
