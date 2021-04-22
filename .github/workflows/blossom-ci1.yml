@@ -33,11 +33,23 @@ jobs:
         with:
           java-version: 1.8
 
+      - name: Get project data (maven)
+        run: echo "PROJECTS=$(mvn -am dependency:tree | grep maven-dependency-plugin | awk '{ out="com.nvidia:"$(NF-1);print out }' | grep rapids | xargs | sed -e 's/ /,/g')" >> $GITHUB_ENV
+
       - name: Add mask
         run: echo "::add-mask::${{ secrets.BLACKDUCK_URL }}"
         
       - name: Run synopsys detect
-        run: wget https://detect.synopsys.com/detect.sh
-        
-      - run: chmod a+x ./detect.sh
-      - run: ./detect.sh --blackduck.url="https://${{ secrets.BLACKDUCK_URL }}"  --blackduck.api.token="${{ secrets.BLACKDUCK_API_TOKEN }}" --detect.force.success=false --detect.parallel.processors=0 --detect.project.name=ravitestgit/spark-rapids --detect.project.version.name=test --detect.detector.search.depth=3
+        id: scan_result
+        uses: blackducksoftware/github-action@2.0.1
+        with:
+          args: >
+            --blackduck.url="https://${{ secrets.BLACKDUCK_URL }}"
+            --blackduck.api.token="${{ secrets.BLACKDUCK_API_TOKEN }}"
+            --detect.maven.build.command="-pl='$PROJECTS -am'"
+            --detect.maven.included.scopes=compile
+            --detect.force.success=false
+            --detect.tools.excluded=SIGNATURE_SCAN
+            --detect.parallel.processors=0
+            --detect.project.name="${{ github.repository }}"
+            --detect.project.version.name="${{ github.run_id }}"
