@@ -40,4 +40,4 @@ jobs:
         run: wget https://detect.synopsys.com/detect.sh
         
       - run: chmod a+x ./detect.sh
-      - run: ./detect.sh --blackduck.url="https://${{ secrets.BLACKDUCK_URL }}"  --blackduck.api.token="${{ secrets.BLACKDUCK_TOKEN }}" --detect.force.success=false --detect.parallel.processors=0 --detect.project.name=ravitestgit/spark-rapids --detect.project.version.name=test --detect.detector.search.depth=3
+      - run: ./detect.sh --blackduck.url="https://${{ secrets.BLACKDUCK_URL }}"  --blackduck.api.token="${{ secrets.BLACKDUCK_API_TOKEN }}" --detect.force.success=false --detect.parallel.processors=0 --detect.project.name=ravitestgit/spark-rapids --detect.project.version.name=test --detect.detector.search.depth=3
