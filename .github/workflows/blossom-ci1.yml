@@ -46,7 +46,7 @@ jobs:
           args: >
             --blackduck.url="https://${{ secrets.BLACKDUCK_URL }}"
             --blackduck.api.token="${{ secrets.BLACKDUCK_API_TOKEN }}"
-            --detect.maven.build.command="-pl='$PROJECTS -am'"
+            --detect.maven.build.command="-pl='com.nvidia:rapids-4-spark-parent,rapids-4-spark-sql_2.12 -am'"
             --detect.force.success=false
             --detect.parallel.processors=0
             --detect.project.name="${{ github.repository }}"
