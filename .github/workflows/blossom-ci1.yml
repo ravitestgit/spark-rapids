@@ -39,9 +39,6 @@ jobs:
       - name: Add mask
         run: echo "::add-mask::${{ secrets.BLACKDUCK_URL }}"
         
-      - name: Add mask1
-        run: cd sql-plugin
-        
       - name: Run synopsys detect
         id: scan_result
         uses: blackducksoftware/github-action@2.0.1
@@ -50,7 +47,7 @@ jobs:
             --blackduck.url="https://${{ secrets.BLACKDUCK_URL }}"
             --blackduck.api.token="${{ secrets.BLACKDUCK_API_TOKEN }}"
             --detect.force.success=false
+            --detect.maven.build.command="-pl='$PROJECTS -am'"
             --detect.parallel.processors=0
-            --detect.maven.build.command="-pl='com.nvidia:rapids-4-spark-sql_2.12 -am'"
             --detect.project.name="${{ github.repository }}"
             --detect.project.version.name="${{ github.run_id }}"
